@@ -6,6 +6,11 @@ import { groq } from '@ai-sdk/groq';
 import { anthropic } from '@ai-sdk/anthropic';
 import { google } from '@ai-sdk/google';
 import { mistral } from '@ai-sdk/mistral';
+import { createQwen } from 'qwen-ai-provider';
+
+const qwen = createQwen({
+  baseURL: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
+});
 
 const middleware = extractReasoningMiddleware({
   tagName: 'think',
@@ -29,12 +34,12 @@ export const scira = customProvider({
       }),
       middleware,
     }),
-    'scira-qwen-32b': wrapLanguageModel({
-      model: groq('qwen/qwen3-32b', {
-        parallelToolCalls: false,
-      }),
-      middleware,
-    }),
+    // 'scira-qwen-32b': wrapLanguageModel({
+    //   model: groq('qwen/qwen3-32b', {
+    //     parallelToolCalls: false,
+    //   }),
+    //   middleware,
+    // }),
     'scira-haiku': anthropic('claude-3-5-haiku-20241022'),
     'scira-mistral': mistral('mistral-small-latest'),
     'scira-google-lite': google('gemini-2.5-flash-lite-preview-06-17'),
@@ -47,6 +52,7 @@ export const scira = customProvider({
     'scira-llama-4': groq('meta-llama/llama-4-maverick-17b-128e-instruct', {
       parallelToolCalls: false,
     }),
+    'scira-qwen-32b': qwen('qwen3-32b'),
   },
 });
 

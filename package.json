@@ -91,6 +91,7 @@
     "postgres": "^3.4.7",
     "posthog-js": "^1.255.1",
     "prismjs": "^1.30.0",
+    "qwen-ai-provider": "^0.1.0",
     "react": "^19",
     "react-dom": "^19",
     "react-katex": "^3.1.0",
